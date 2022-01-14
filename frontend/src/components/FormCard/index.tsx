@@ -21,6 +21,7 @@ function FormCard( { movieId } : Props) {
       .then(response => {
         setMovie(response.data);
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
