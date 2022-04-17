@@ -1,8 +1,10 @@
 package com.devsuperior.dsmovie.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,8 +31,25 @@ public class MovieController {
 	}
 
 	@GetMapping(value = "/functionone")
-	public String functionone() {
-		return "(setData, setLoading) => { let info = ['']; const counts = {}; const structuredData = [{}]; info = dataSource.map((item, index) => { return item.stage; }); info.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; }); for (var key in counts) { if (counts.hasOwnProperty(key)) { structuredData.push({ arg: key, val: counts[key] }); } } setData(structuredData); setLoading(false); }";
+	public ResponseEntity functionone() {
+		FileSystemResource resource = new FileSystemResource("src/main/resources/static/func2.js");
+
+		MediaType mediaType = MediaTypeFactory
+				.getMediaType(resource)
+				.orElse(MediaType.APPLICATION_OCTET_STREAM);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(mediaType);
+
+		ContentDisposition disposition = ContentDisposition
+				// 3.2
+				.inline() // or .attachment()
+				// 3.1
+				.filename(resource.getFilename())
+				.build();
+		headers.setContentDisposition(disposition);
+
+		return new ResponseEntity<>(resource, headers, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/functiontwo")
