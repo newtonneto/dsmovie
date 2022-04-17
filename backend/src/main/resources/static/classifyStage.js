@@ -1,4 +1,4 @@
-function classifyStage(data, setData, setLoading, series) {
+function classify(data, setData, setLoading, series) {
   let info = [""];
   const counts = {};
   const structuredData = [{}];

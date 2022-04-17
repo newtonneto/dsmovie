@@ -1,4 +1,4 @@
-function classifyAbsence(data, setData, setLoading) {
+function classify(data, setData, setLoading, series) {
   let info = [""];
   const counts = {};
   const structuredData = [{}];
