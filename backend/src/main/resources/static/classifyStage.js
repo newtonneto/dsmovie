@@ -1,8 +1,8 @@
-(function classify() {
+function classifyStage(data, setData, setLoading) {
   let info = [""];
   const counts = {};
   const structuredData = [{}];
-  info = dataSource.map((item, index) => {
+  info = data.map((item, index) => {
     return item.stage;
   });
   info.forEach(function (x) {
@@ -13,4 +13,6 @@
       structuredData.push({ arg: key, val: counts[key] });
     }
   }
-});
+  setData(structuredData);
+  setLoading(false);
+};

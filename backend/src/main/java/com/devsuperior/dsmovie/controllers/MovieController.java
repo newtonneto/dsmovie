@@ -30,9 +30,9 @@ public class MovieController {
 		return service.findById(id);
 	}
 
-	@GetMapping(value = "/func2.js")
+	@GetMapping(value = "/classifyStage.js")
 	public ResponseEntity functionone() {
-		FileSystemResource resource = new FileSystemResource("src/main/resources/static/func2.js");
+		FileSystemResource resource = new FileSystemResource("src/main/resources/static/classifyStage.js");
 
 		MediaType mediaType = MediaTypeFactory
 				.getMediaType(resource)
@@ -42,9 +42,7 @@ public class MovieController {
 		headers.setContentType(mediaType);
 
 		ContentDisposition disposition = ContentDisposition
-				// 3.2
-				.inline() // or .attachment()
-				// 3.1
+				.inline()
 				.filename(resource.getFilename())
 				.build();
 		headers.setContentDisposition(disposition);
@@ -52,8 +50,23 @@ public class MovieController {
 		return new ResponseEntity<>(resource, headers, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/functiontwo")
-	public String functiotwo() {
-		return "(setData, setLoading) => { let info = ['']; const counts = {}; const structuredData = [{}]; info = dataSource.map((item, index) => { return item.absenceType.name; }); info.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; }); for (var key in counts) { if (counts.hasOwnProperty(key)) { structuredData.push({ arg: key, val: counts[key] }); } } setData(structuredData); setLoading(false); }";
+	@GetMapping(value = "/classifyAbsence.js")
+	public ResponseEntity functiotwo() {
+		FileSystemResource resource = new FileSystemResource("src/main/resources/static/classifyAbsence.js");
+
+		MediaType mediaType = MediaTypeFactory
+				.getMediaType(resource)
+				.orElse(MediaType.APPLICATION_OCTET_STREAM);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(mediaType);
+
+		ContentDisposition disposition = ContentDisposition
+				.inline()
+				.filename(resource.getFilename())
+				.build();
+		headers.setContentDisposition(disposition);
+
+		return new ResponseEntity<>(resource, headers, HttpStatus.OK);
 	}
 }
