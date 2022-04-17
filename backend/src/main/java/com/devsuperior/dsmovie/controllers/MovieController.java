@@ -30,7 +30,7 @@ public class MovieController {
 		return service.findById(id);
 	}
 
-	@GetMapping(value = "/functionone")
+	@GetMapping(value = "/func2.js")
 	public ResponseEntity functionone() {
 		FileSystemResource resource = new FileSystemResource("src/main/resources/static/func2.js");
 
