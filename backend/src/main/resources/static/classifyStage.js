@@ -1,4 +1,4 @@
-function classifyStage(data, setData, setLoading) {
+function classifyStage(data, setData, setLoading, series) {
   let info = [""];
   const counts = {};
   const structuredData = [{}];
@@ -10,7 +10,7 @@ function classifyStage(data, setData, setLoading) {
   });
   for (var key in counts) {
     if (counts.hasOwnProperty(key)) {
-      structuredData.push({ arg: key, val: counts[key] });
+      structuredData.push({ [series.argumentField]: key, [series.valueField]: counts[key] });
     }
   }
   setData(structuredData);

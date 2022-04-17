@@ -10,7 +10,7 @@ function classifyAbsence(data, setData, setLoading) {
   });
   for (var key in counts) {
     if (counts.hasOwnProperty(key)) {
-      structuredData.push({ arg: key, val: counts[key] });
+      structuredData.push({ [series.argumentField]: key, [series.valueField]: counts[key] });
     }
   }
   setData(structuredData);
