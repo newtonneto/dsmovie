@@ -52,7 +52,7 @@ public class MovieController {
 
 	@GetMapping(value = "/classifyAbsence.js")
 	public ResponseEntity functiotwo() {
-		FileSystemResource resource = new FileSystemResource("src/main/resources/static/classifyAbsence.js");
+		FileSystemResource resource = new FileSystemResource("src/main/resources/static/showalert.js");
 
 		MediaType mediaType = MediaTypeFactory
 				.getMediaType(resource)
