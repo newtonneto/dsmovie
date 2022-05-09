@@ -1,4 +1,4 @@
-const classify = function (data, setData, setLoading, series) {
+function classify(data, setData, setLoading, series) {
   let info = [""];
   const counts = {};
   const structuredData = [{}];
